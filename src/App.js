@@ -1,23 +1,13 @@
 import logo from './logo.svg';
 import './App.css';
+import * as PC from './components/atividade01/02MeuPC';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+     <PC.PlacaMae nome={"Placa"} preco={12.0}/>
+     <PC.Memoria nome={"Placa"} preco={12.0}/>
+     <PC.PlacaDeVideo nome={"Placa"} preco={12.0}/>
     </div>
   );
 }
