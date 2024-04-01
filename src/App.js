@@ -1,13 +1,10 @@
-import logo from './logo.svg';
 import './App.css';
-import * as PC from './components/atividade01/02MeuPC';
+import { Avo } from './components/atividade02/questao03/ComponenteAvo';
 
 function App() {
   return (
     <div className="App">
-     <PC.PlacaMae nome={"Placa"} preco={12.0}/>
-     <PC.Memoria nome={"Placa"} preco={12.0}/>
-     <PC.PlacaDeVideo nome={"Placa"} preco={12.0}/>
+     <Avo/>
     </div>
   );
 }
