@@ -1,0 +1,54 @@
+Questão 5:
+
+O problema de props drilling no geral vai ocorrer quando temos uma hierarquia vasta 
+com pais, filhos e netos, e precisamos passar alguma propriedade de um pai para o filho,
+que tem um nível mais inferior
+
+Como por exemplo tenho o componente A que é pai de B, e B que é pai de C
+O componente A tem a propriedade "paz", e eu quero passar pro C essa propriedade.
+A primeira coisa que eu iria pensar era passar do A pra passar pro B pra passar pro C
+Só que isso é props drilling e não podemos fazer isso.
+
+O mais elegante seria criar um Contexto, e quem precisar acessar essa informação não
+vai ter que passar do filho pro neto, pro bisneto e etc.
+Apenas quem quiser usa o useContext(), Pra isso precisamos criar um provider que 
+vai prover esse contexto
+
+Segue os exemplos -----------------------------------------------------------------------------
+
+
+Aqui temos o contexto sendo criado 
+
+import { createContext } from 'react'
+export const Contador = createContext(32)
+
+Aqui temos o provedor do contexto
+
+export function Avo() {
+  const [numero, setNumero] = useState(9)
+
+  return (
+    <div>
+      <h1>Avo</h1>
+      <Contador.Provider value={{ numero, setNumero }}>
+        <Imagem id={numero} />
+        <Filho />
+        <Incrementar />
+        <Decrementar />
+      </Contador.Provider>
+    </div>
+  )
+}
+
+E aqui temos o neto usando o contexto do Vô
+
+export function Neto() {
+  const { numero } = useContext(Contador)
+
+  return (
+    <div>
+      <h1>Neto</h1>
+      <Imagem id={numero + 2} />
+    </div>
+  )
+}
